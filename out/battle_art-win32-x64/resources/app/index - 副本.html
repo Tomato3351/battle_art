@@ -1,0 +1,152 @@
+
+<html>
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=GB2312">
+  <title>Battle Art</title>
+  <style>
+    button {
+      width: 80px;
+      height: 30px;
+      background: rgba(0, 0, 0,0.8);
+      border: none;
+      color: white;
+      overflow: hidden;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  </style>
+
+
+
+
+</head>
+
+
+<body style="background-image: url(resource/jay_chou.jpg); background-size: 100%; background-repeat: repeat-y;">
+
+  <!--background-color: rgb(255, 255, 128)-->
+
+  <div id="buttons" style="height:500px;width:200px;float:left;">
+    <h1 style="color: rgb(255, 255, 128);height:50px;width:200px;float:left">Battle Art</h1>
+    <button onclick=" change_img('resource/TFBOYS.jpg')">TFBOYS</button>
+    <button onclick=" change_img('resource/蔡依林.jpg')">蔡依林</button>
+    <button onclick=" change_img('resource/陈粒.jpg')">陈粒</button>
+    <button onclick=" change_img('resource/陈雪凝.jpg')">陈雪凝</button>
+    <button onclick=" change_img('resource/陈奕迅.jpg')">陈奕迅</button>
+    <button onclick=" change_img('resource/邓紫棋.jpg')">邓紫棋</button>
+    <button onclick=" change_img('resource/方大同.jpg')">方大同</button>
+    <button onclick=" change_img('resource/古风.jpg')">古风</button>
+    <button onclick=" change_img('resource/韩红.jpg')">韩红</button>
+    <button onclick=" change_img('resource/胡彦斌.jpg')">胡彦斌</button>
+    <button onclick=" change_img('resource/花粥.jpg')">花粥</button>
+    <button onclick=" change_img('resource/华晨宇.jpg')">华晨宇</button>
+    <button onclick=" change_img('resource/筷子兄弟.jpg')">筷子兄弟</button>
+    <button onclick=" change_img('resource/李荣浩.jpg')">李荣浩</button>
+    <button onclick=" change_img('resource/李宇春.jpg')">李宇春</button>
+    <button onclick=" change_img('resource/梁静茹.jpg')">梁静茹</button>
+    <button onclick=" change_img('resource/林俊杰.jpg')">林俊杰</button>
+    <button onclick=" change_img('resource/林宥嘉.jpg')">林宥嘉</button>
+    <button onclick=" change_img('resource/毛不易.jpg')">毛不易</button>
+    <button onclick=" change_img('resource/莫文蔚.jpg')">莫文蔚</button>
+    <button onclick=" change_img('resource/苏打绿.jpg')">苏打绿</button>
+    <button onclick=" change_img('resource/孙燕姿.jpg')">孙燕姿</button>
+    <button onclick=" change_img('resource/田馥甄.jpg')">田馥甄</button>
+    <button onclick=" change_img('resource/汪苏泷.jpg')">汪苏泷</button>
+    <button onclick=" change_img('resource/王力宏.jpg')">王力宏</button>
+    <button onclick=" change_img('resource/五月天.jpg')">五月天</button>
+    <button onclick=" change_img('resource/萧敬腾.jpg')">萧敬腾</button>
+    <button onclick=" change_img('resource/萧亚轩.jpg')">萧亚轩</button>
+    <button onclick=" change_img('resource/许嵩.jpg')">许嵩</button>
+    <button onclick=" change_img('resource/薛之谦.jpg')">薛之谦</button>
+    <button onclick=" change_img('resource/杨宗纬.jpg')">杨宗纬</button>
+    <button onclick=" change_img('resource/粤语英语.jpg')">粤语英语</button>
+    <button onclick=" change_img('resource/张杰.jpg')">张杰</button>
+    <button onclick=" change_img('resource/张靓颖.jpg')">张靓颖</button>
+    <button onclick=" change_img('resource/张韶涵.jpg')">张韶涵</button>
+    <button onclick=" change_img('resource/张信哲.jpg')">张信哲</button>
+    <button onclick=" change_img('resource/赵雷.jpg')">赵雷</button>
+    <button onclick=" change_img('resource/周杰伦.jpg')">周杰伦</button>
+    <button onclick=" change_img('resource/周杰伦 (2).jpg')">周杰伦2</button>
+    <button onclick=" clear_img()">Clear</button>
+    <!--<button onclick=" clear_img()" style="margin-top:100px; margin-left:50px;">Clear</button>-->
+
+  </div>
+  <div id="image" style="height:600px;width:1020px;float:left;">
+    <h1 id="singer" style="color: rgb(255, 83, 83);text-align:center;">Let's Rock!</h1>
+    <!--<img id="img" width="1020" style="height:600px;overflow-y:scroll;position:absolute">-->
+    <canvas id="canv" height="600" style="background-color:rgba(0,0, 125,0);position:absolute">
+      <!--height="600"-->
+    </canvas>
+
+  </div>
+
+</body>
+<script>
+  var img = document.getElementById('img');
+  var image = document.getElementById('image');
+  var singer = document.getElementById('singer');
+  var canv = document.getElementById('canv');
+
+  function change_img(path) {
+
+    if (img == null) {
+      img = document.createElement("img");
+    }
+    img.src = path;
+    img.style.overflow ="auto";
+    image.appendChild(img);
+
+
+    image.removeChild(canv);
+    canv.height = 1370;
+    image.appendChild(canv);
+
+    // 更改标题 歌手名字.
+    singer_name = path.split("/")[1].split(".", 1)[0];
+    singer.innerText = singer_name
+  }
+
+
+
+
+
+
+  function clear_img() {
+    if (img != null)
+      img.parentNode.removeChild(img);
+    singer.innerText = "Let's Rock!"
+    // 重置canvas
+    canv.height = 600;
+  }
+  window.onload = function () {
+    canv.onmousedown = function (ev) {
+      var ev = ev || window.event;
+      var ctx = canv.getContext('2d');
+      ctx.strokeStyle = "red";
+      ctx.beginPath();
+      ctx.moveTo(5, ev.clientY-92);
+      ctx.lineTo(200, ev.clientY-92);
+      ctx.stroke();
+    };
+
+
+
+  };
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</html>
